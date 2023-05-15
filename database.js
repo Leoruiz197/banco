@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('aula', 'postgres', 'blue2023', {
-  host: 'localhost',
+require('dotenv').config();
+
+const sequelize = new Sequelize('aula', process.env.DB_USER, process.env.DB_PASS, {
+  host: process.env.DB_HOST,
   dialect: 'postgres',
-  port: 5432,
+  port: process.env.DB_PORT,
   logging: true,
 });
 
