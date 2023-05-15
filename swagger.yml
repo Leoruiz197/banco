@@ -1,0 +1,93 @@
+openapi: '3.0.2'
+info:
+  description: "API sobre a aula teste de documentação"
+  version: "1.0.0"
+  title: "Aula de teste"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "email@email.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+- name: "user"
+  description: "Operaçoes sobre o usuario"
+  externalDocs:
+    description: "Find out more about our store"
+    url: "http://swagger.io"
+servers:
+  - url: http://localhost:3000
+  - url: https://api.server.test/v1
+    description: Server description
+paths:
+  /user/create:
+    post:
+      tags:
+      - "user"
+      description: 'Criar um novo usuario' 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                senha: 
+                  type: string
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: "{ message: 'Erro inesperado, tente novamente mais tarde'}"
+  /user/findById/{id}:
+    get:
+      tags:
+      - "user"
+      description: 'Recupera um usuario por Id'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type : integer
+            minimum: 1
+      responses:
+        '200': 
+          description: OK
+        '500':
+          description: "{ message: 'Erro inesperado, tente novamente mais tarde'}"
+        '404':
+          description: usuario nao encontrado
+  /user/find:
+    get:
+      tags:
+      - "user"
+      description: 'Recupera todos os usuarios do projeto'
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: "{ message: 'Erro inesperado, tente novamente mais tarde'}"
+  /user/delete/{id}:
+    delete:
+      tags:
+      - "user"
+      description: 'Deleta o usuario do respectivo ID'
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          schema:
+            type : integer
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: "{ message: 'Erro inesperado, tente novamente mais tarde'}"
+        '404':
+          description: usuario nao encontrado
